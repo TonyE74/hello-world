@@ -6,4 +6,4 @@ print(msg)
 msg = msg.upper()
 print(msg)
 
-print(np.random.randint(1,20))
+print(np.random.randint(1,25))
