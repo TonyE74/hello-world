@@ -29,3 +29,4 @@ print('pi2 when intergrating to a half')
 mypi2 = 12*(0.5 - 0.5*(1/3)*(1/2)**3 - (1/8)*(1/5)*(1/2)**5 - (1/16)*(1/7)*(1/2)**7 - (5/128)*(1/9)*(1/2)**9 - math.sqrt(3)/8 )
 print(mypi2)
 print(mypi2 - math.pi)
+# end
