@@ -1,0 +1,51 @@
+import math
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Function to generate the vertices of a single hexagon
+def hexagon(center, size):
+    """Generate the vertices of a hexagon with a given center and size."""
+    angle_offset = np.pi / 6  # 30 degrees
+    return [
+        (center[0] + size * np.cos(angle_offset + i * 2 * np.pi / 6), 
+         center[1] + size * np.sin(angle_offset + i * 2 * np.pi / 6))
+        for i in range(6)
+    ]
+
+# Function to plot a hexagonal grid
+def plot_hexagonal_grid(rows, cols, size):
+    """Generate and plot a hexagonal grid with the specified rows, columns, and hexagon size."""
+    # Calculate the width and height of a single hexagon
+    hex_width = size * 2
+    hex_height = np.sqrt(3) * size
+    
+    # Create a list of hexagon centers
+    hex_centers = []
+    for row in range(rows):
+        for col in range(cols):
+            x_offset = col * hex_width * 3 / 4  # Horizontal spacing
+            y_offset = row * hex_height + (col % 2) * (hex_height / 2)  # Vertical offset for staggering
+
+            hex_centers.append((x_offset, y_offset))
+
+    # Plot each hexagon
+    plt.figure(figsize=(10, 10))
+    ax = plt.gca()
+
+    for center in hex_centers:
+        hex_vertices = hexagon(center, size)
+        hex_x, hex_y = zip(*hex_vertices)
+        ax.fill(hex_x, hex_y, edgecolor='black', facecolor='lightblue', lw=1)
+
+    # Adjust axes to fit the grid properly
+    ax.set_aspect('equal')
+    ax.set_axis_off()  # Turn off axis
+    plt.show()
+
+# Parameters
+rows = 10  # Number of rows in the grid
+cols = 10  # Number of columns in the grid
+size = 1   # Size of the hexagons (radius of each hexagon)
+
+# Plot the hexagonal grid
+plot_hexagonal_grid(rows, cols, size)
